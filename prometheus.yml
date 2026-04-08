@@ -1,0 +1,21 @@
+# Example Prometheus configuration for Kostal Plenticore Exporter
+
+global:
+  scrape_interval: 30s
+  evaluation_interval: 30s
+
+scrape_configs:
+  # Kostal Plenticore Inverter
+  - job_name: 'kostal-plenticore'
+    static_configs:
+      # Use 'kostal-exporter:9876' when running with docker-compose.full-stack.yml
+      # Use 'localhost:9876' when running Prometheus locally
+      - targets: ['kostal-exporter:9876']
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+    # Optional: Add custom labels
+    # relabel_configs:
+    #   - source_labels: [__address__]
+    #     target_label: instance
+    #     replacement: 'home-inverter'
