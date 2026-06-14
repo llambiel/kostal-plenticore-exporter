@@ -156,8 +156,8 @@ A pre-configured Grafana dashboard lives at `grafana/dashboards/kostal-plenticor
 - **Power Flow** — live system power flow and home consumption broken down by source (PV / battery / grid)
 - **PV Strings** — per-string power, voltage and current (PV1 & PV2)
 - **Battery** — state-of-charge gauge, charge/discharge power, cycles and voltage
-- **AC Grid** — three-phase voltage, current and power, total AC power and grid frequency
-- **Energy Statistics** — PV yield, autarky and self-consumption per day/month/year/lifetime, plus CO₂ savings
+- **AC Grid** — three-phase voltage, current and power, total AC power and grid frequency (gauge + history)
+- **Energy Statistics** — PV yield, autarky and self-consumption per day/month/year/lifetime
 - **Exporter Health** — scrape success, duration and rate
 
 The dashboard uses a `datasource` and an `Inverter` (`$instance`) variable, so it works with one or several inverters.
