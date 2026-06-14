@@ -150,13 +150,36 @@ kostal_plenticore_scb_statistic_energyflow_EnergyHomePv{metric_id="Statistic:Yie
 
 ## Grafana Dashboard
 
-A pre-configured Grafana dashboard is available in the `grafana/` directory. Import it to get started quickly with visualizations for:
+A pre-configured Grafana dashboard lives at `grafana/dashboards/kostal-plenticore.json`, with sections for:
 
-- Real-time power flows
-- Energy production and consumption
-- Battery status
-- Grid statistics
-- Self-sufficiency metrics
+- **Overview** — current PV production, home consumption, grid power, battery SoC/power, autarky, self-consumption and yield at a glance
+- **Power Flow** — live system power flow and home consumption broken down by source (PV / battery / grid)
+- **PV Strings** — per-string power, voltage and current (PV1 & PV2)
+- **Battery** — state-of-charge gauge, charge/discharge power, cycles and voltage
+- **AC Grid** — three-phase voltage, current and power, total AC power and grid frequency
+- **Energy Statistics** — PV yield, autarky and self-consumption per day/month/year/lifetime, plus CO₂ savings
+- **Exporter Health** — scrape success, duration and rate
+
+The dashboard uses a `datasource` and an `Inverter` (`$instance`) variable, so it works with one or several inverters.
+
+### Automatic provisioning (full stack)
+
+When you start the full monitoring stack, the dashboard and its Prometheus
+datasource are provisioned automatically — no manual import needed:
+
+```bash
+docker-compose -f docker-compose.full-stack.yml up -d
+```
+
+Open Grafana at <http://localhost:3000> (default `admin` / `admin`) and find the
+dashboard in the **Solar** folder.
+
+### Manual import
+
+If you run Grafana yourself, import the dashboard via
+**Dashboards → New → Import**, upload
+`grafana/dashboards/kostal-plenticore.json`, and select your Prometheus
+datasource when prompted.
 
 ## Endpoints
 
